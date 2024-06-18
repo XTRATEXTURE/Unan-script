@@ -1,0 +1,10 @@
+local function deletePet(id)
+    workspace.__REMOTES.Game.Inventory:InvokeServer("Delete", id)
+end
+
+local petData = workspace.__REMOTES.Core["Get Stats"]:InvokeServer().Save.Pets
+for i, pet in ipairs(petData) do
+    if pet.l == nil then -- Check if the level is nil
+        deletePet(pet.id) -- Delete the pet if the level is nil
+    end
+end
